@@ -26,7 +26,6 @@ public class ClienteBiblioteca {
 
             System.out.println("Que libro desea buscar:");
             String tituloLibro = myObj.nextLine();  
-
             Libro libro = gestionBiblioteca.buscarLibro(tituloLibro);
             System.out.println("Libro encontrado: " + libro.titulo + ", " + libro.autor + ", ISBN: " + libro.ISBN);
             // Ejemplo: Prestar un libro
@@ -37,10 +36,11 @@ public class ClienteBiblioteca {
                 System.out.println("El libro no está disponible para préstamo.");
             }
             
-            System.out.println("¿Quieres devolver? S/N");
+            System.out.println("¿Quieres hacer? 1. DevS/N");
             int opcion = myObj.nextInt(); 
+            System.out.println(opcion);
             if(opcion == 1){
-                System.out.println("Prestar");
+                System.out.println("    Devolver");
 
                 // Ejemplo:devolver libro
                 boolean resultadoDevolucion = gestionBiblioteca.devolverLibro(libro.ISBN);
