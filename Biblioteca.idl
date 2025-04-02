@@ -10,7 +10,7 @@ module Biblioteca {
         boolean estaDisponible;
         string categoria;
     };
-
+    typedef sequence<Libro> ListaLibros;
     // Define la interfaz para el sistema de gestión de la biblioteca
     interface GestionBiblioteca {
         // Busca un libro por título y devuelve los detalles del libro
@@ -21,6 +21,9 @@ module Biblioteca {
 
         // Devuelve un libro, cambiando su estado a disponible
         boolean devolverLibro(in string ISBN);
+
+        //Mostrar todos los libros
+        ListaLibros mostrarTodosLosLibros();
     };
 };
 

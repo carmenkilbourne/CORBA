@@ -22,16 +22,17 @@ public class ClienteBiblioteca {
 
             // Usar la interfaz para llamar a las operaciones del servidor
             // Ejemplo: Buscar un libro
-             Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
             boolean continuar = true;
 
-             while (continuar) {
+            while (continuar) {
                 // Mostrar el menú de opciones
                 System.out.println("\n--- Menú de Opciones ---");
                 System.out.println("1. Buscar un libro");
                 System.out.println("2. Prestar un libro");
                 System.out.println("3. Devolver un libro");
-                System.out.println("4. Salir");
+                System.out.println("4. Mostrar todos los libros");
+                System.out.println("5. Salir");
                 System.out.print("Seleccione una opción: ");
 
                 int opcion = scanner.nextInt();
@@ -39,44 +40,55 @@ public class ClienteBiblioteca {
 
                 switch (opcion) {
                     case 1:
-                     // Buscar un libro
-                     System.out.print("Ingrese el titulo del libro que desea buscar: ");
-                     String tituloLibro = scanner.nextLine();
-                     Libro libro = gestionBiblioteca.buscarLibro(tituloLibro);
-                     System.out.println("Libro encontrado: " + libro.titulo + ", " + libro.autor +
-                                        ", Categoria: " + libro.categoria + ", ISBN: " + libro.ISBN + ", Disponible:" + libro.estaDisponible);
-                     break;
+                        // Buscar un libro
+                        System.out.print("Ingrese el titulo del libro que desea buscar: ");
+                        String tituloLibro = scanner.nextLine();
+                        Libro libro = gestionBiblioteca.buscarLibro(tituloLibro);
+                        System.out.println("Libro encontrado: " + libro.titulo + ", " + libro.autor +
+                                ", Categoria: " + libro.categoria + ", ISBN: " + libro.ISBN + ", Disponible:"
+                                + libro.estaDisponible);
+                        break;
 
-                 case 2:
-                     // Prestar un libro
-                     System.out.print("Ingrese el ISBN del libro que desea prestar: ");
-                     String isbnPrestar = scanner.nextLine();
-                     boolean resultadoPrestamo = gestionBiblioteca.prestarLibro(isbnPrestar);
-                     if (resultadoPrestamo) {
-                         System.out.println("Libro prestado con exito.");
-                     } else {
-                         System.out.println("El libro no está disponible para prestamo.");
-                     }
-                     break;
-                     
+                    case 2:
+                        // Prestar un libro
+                        System.out.print("Ingrese el ISBN del libro que desea prestar: ");
+                        String isbnPrestar = scanner.nextLine();
+                        boolean resultadoPrestamo = gestionBiblioteca.prestarLibro(isbnPrestar);
+                        if (resultadoPrestamo) {
+                            System.out.println("Libro prestado con exito.");
+                        } else {
+                            System.out.println("El libro no está disponible para prestamo.");
+                        }
+                        break;
+
                     case 3:
-                    // Devolver un libro
-                    System.out.print("Ingrese el ISBN del libro que desea devolver: ");
-                    String isbnDevolver = scanner.nextLine();
-                    boolean resultadoDevolucion = gestionBiblioteca.devolverLibro(isbnDevolver);
-                    if (resultadoDevolucion) {
-                        System.out.println("Libro devuelto con exito.");
-                    } else {
-                        System.out.println("El libro no esta disponible para devolver.");
-                    }
-                    break;
+                        // Devolver un libro
+                        System.out.print("Ingrese el ISBN del libro que desea devolver: ");
+                        String isbnDevolver = scanner.nextLine();
+                        boolean resultadoDevolucion = gestionBiblioteca.devolverLibro(isbnDevolver);
+                        if (resultadoDevolucion) {
+                            System.out.println("Libro devuelto con exito.");
+                        } else {
+                            System.out.println("El libro no esta disponible para devolver.");
+                        }
+                        break;
+                    case 4:
+                        // Mostrar todos los libros
+                        System.out.println("Lista de todos los libros:");
+                        Libro[] libros = gestionBiblioteca.mostrarTodosLosLibros();
+                        for (Libro l : libros) {
+                            System.out.println("Titulo: " + l.titulo + ", Autor: " + l.autor +
+                                    ", ISBN: " + l.ISBN + ", Categoria: " + l.categoria +
+                                    ", Disponible: " + (l.estaDisponible ? "Si" : "No"));
+                        }
+                        break;
 
-                case 4:
-                    // Salir
-                    System.out.println("Saliendo del sistema...");
-                    continuar = false;
-                    break;
-                    
+                    case 5:
+                        // Salir
+                        System.out.println("Saliendo del sistema...");
+                        continuar = false;
+                        break;
+
                     default:
                         System.out.println("Opción no válida. Intente nuevamente.");
                         break;
@@ -84,12 +96,9 @@ public class ClienteBiblioteca {
             }
             scanner.close();
 
-
-
         } catch (Exception e) {
             System.out.println("Error: " + e);
             e.printStackTrace(System.out);
         }
     }
 }
-
