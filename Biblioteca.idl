@@ -8,6 +8,7 @@ module Biblioteca {
         string autor;
         string ISBN;
         boolean estaDisponible;
+        string categoria;
     };
 
     // Define la interfaz para el sistema de gestión de la biblioteca

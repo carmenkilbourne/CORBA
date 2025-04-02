@@ -15,7 +15,11 @@ class GestionBibliotecaImpl extends GestionBibliotecaPOA {
     public GestionBibliotecaImpl(ORB orb) {
         this.orb = orb;
         // Inicializar algunos libros en el sistema
-        libros.put("1234", new Libro("El principito", "Antoine de Saint-Exupéry", "1234", true));
+        libros.put("1234", new Libro("El principito", "Antoine de Saint-Exupéry", "1234", true,"Infantil"));
+        libros.put("3421", new Libro("Blancanieves", "Hermanos Grimm", "1234", true,"Infantil"));
+
+        libros.put("2341", new Libro("Cumbres borrascosas", "Emily Bronte", "1234", true,"Drama"));
+
         // Agregar más libros según sea necesario
     }
 
@@ -29,7 +33,7 @@ class GestionBibliotecaImpl extends GestionBibliotecaPOA {
         return libros.values().stream()
                 .filter(libro -> libro.titulo.equals(titulo) && libro.estaDisponible)
                 .findFirst()
-                .orElse(new Libro("No encontrado", "", "", false));
+                .orElse(new Libro("No encontrado", "", "", false,""));
     }
 
     @Override
