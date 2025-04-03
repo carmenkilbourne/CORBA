@@ -24,6 +24,9 @@ module Biblioteca {
 
         //Mostrar todos los libros
         ListaLibros mostrarTodosLosLibros();
+
+        //Mostrar todos los libros por categoria
+        ListaLibros mostrarLibrosCategoria(in string categoria);
     };
 };
 

@@ -32,7 +32,8 @@ public class ClienteBiblioteca {
                 System.out.println("2. Prestar un libro");
                 System.out.println("3. Devolver un libro");
                 System.out.println("4. Mostrar todos los libros");
-                System.out.println("5. Salir");
+                System.out.println("5.Mostrar libros en una categoria");
+                System.out.println("6. Salir");
                 System.out.print("Seleccione una opción: ");
 
                 int opcion = scanner.nextInt();
@@ -82,8 +83,22 @@ public class ClienteBiblioteca {
                                     ", Disponible: " + (l.estaDisponible ? "Si" : "No"));
                         }
                         break;
-
-                    case 5:
+                        case 5:
+                        // Mostrar libros de una categoría
+                        System.out.print("Ingrese la categoría de los libros que desea ver: ");
+                        String categoria = scanner.nextLine();
+                        Libro[] librosCategoria = gestionBiblioteca.mostrarLibrosCategoria(categoria);
+                        if (librosCategoria.length == 0) {
+                            System.out.println("No se encontraron libros en la categoría: " + categoria);
+                        } else {
+                            System.out.println("Lista de libros en la categoría '" + categoria + "':");
+                            for (Libro l : librosCategoria) {
+                                System.out.println("Título: " + l.titulo + ", Autor: " + l.autor +
+                                                   ", ISBN: " + l.ISBN + ", Disponible: " + (l.estaDisponible ? "Sí" : "No"));
+                            }
+                        }
+                        break;
+                    case 6:
                         // Salir
                         System.out.println("Saliendo del sistema...");
                         continuar = false;

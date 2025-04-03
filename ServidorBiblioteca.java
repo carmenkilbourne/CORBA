@@ -58,6 +58,14 @@ class GestionBibliotecaImpl extends GestionBibliotecaPOA {
     public Libro[] mostrarTodosLosLibros() {
         return libros.values().toArray(new Libro[0]);
     }
+
+    @Override
+    public Libro[] mostrarLibrosCategoria(String categoria) {
+        // Filtrar los libros por categoría
+        return libros.values().stream()
+                .filter(libro -> libro.categoria.equalsIgnoreCase(categoria))
+                .toArray(Libro[]::new);
+    }
 }
 
 public class ServidorBiblioteca {
